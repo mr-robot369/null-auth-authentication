@@ -1,0 +1,5 @@
+# Rename this file to .env and enter your credentials
+
+EMAIL_USER='your-email'
+EMAIL_PASS='your-password'
+EMAIL_FROM='your-email'
