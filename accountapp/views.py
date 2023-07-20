@@ -41,13 +41,18 @@ class UserLoginView(APIView):
         serializer.is_valid(raise_exception=True)
         email=serializer.data.get('email')
         password=serializer.data.get('password')
-        user=authenticate(email=email,password=password)
+        user= authenticate(email=email,password=password)
         if user is not None:
             token=get_tokens_for_user(user)
             return Response({'token':token,'msg':'Login Success'},status=status.HTTP_200_OK)
         else:
             return Response({'errors':{'non_field_errors':['Email or Password is not valid']}},
             status=status.HTTP_404_NOT_FOUND)
+
+# class GoogleAuthenticationView(APIView):
+#     renderer_classes=[UserRenderer]
+#     def post(self,request, format=None):
+#         serializer=GoogleAuthenticationSerializer(data=request.data)
 
 class UserProfileView(APIView):
     renderer_classes=[UserRenderer]

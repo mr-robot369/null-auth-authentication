@@ -40,6 +40,8 @@ class UserLoginSerializer(serializers.ModelSerializer):
         model = User
         fields = ['email', 'password']
 
+# class GoogleAuthenticationSerializer(serializers.ModelSerializer):
+
 
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
