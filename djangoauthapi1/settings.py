@@ -38,11 +38,36 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "corsheaders",
+    "corsheaders",   # needed for connection with frontend
+    'django.contrib.sites',  # needed for oauth
+    # google auth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'dj_rest_auth',
     'rest_framework',
+    'rest_framework.authtoken',
     'rest_framework_simplejwt',
     'accountapp',
 ]
+
+# google auth configuration
+SOCIALACCOUNT_PROVIDERS = {
+   'google': {
+       'APP':{
+           "client_id":os.environ.get("GOOGLE_OAUTH_CLIENT_ID"),
+           "secret":os.environ.get("GOOGLE_OAUTH_SECRET"),
+       },
+      'SCOPE': [
+         'profile',
+         'email',
+      ],
+      'AUTH_PARAMS': {
+         'access_type': 'online',
+      }
+   }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -68,6 +93,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # `allauth` needs this from django
+                'django.template.context_processors.request',  #allauth
             ],
         },
     },
@@ -109,6 +136,7 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication'   # dj-rest-auth for jwt
     ),
     # 'DEFAULT_RENDERER_CLASSES':('rest_framework.renderers.JSONRenderer',)
 }
@@ -134,7 +162,24 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# google auth settings
+ACCOUNT_AUTHENTICATION_METHOD="email"
+ACCOUNT_EMAIL_REQUIRED=True
+ACCOUNT_UNIQUE_EMAIL=True
+ACCOUNT_USERNAME_REQUIRED=False
+ACCOUNT_USER_MODEL_USERNAME_FIELD=None
 
+GOOGLE_REDIRECT_URI="http://localhost:8000/api/user/google/login/callback/"
+ADDITIONAL_DETAILS_URL="http://localhost:8000/api/user/google/additional-details/"
+# redirect_uri="http://127.0.0.1:8000/api/user/home"
+# dj-rest-auth setting
+JWT_AUTH_SECURE = True
+REST_USE_JWT=True
+JWT_AUTH_COOKIE= 'access_token'
+JWT_AUTH_REFRESH_COOKIE= 'refresh-token'
+
+
+# user model
 AUTH_USER_MODEL = 'accountapp.User'
 
 # Email Configuration
@@ -166,12 +211,31 @@ SIMPLE_JWT = {
     "JTI_CLAIM": "jti",
 }
 
+# needed for reset password
 PASSWORD_RESET_TIMEOUT=900  # 900 sec=15 min
 
-#cors policy error configuration
+#cors policy error configuration ( connection with frontend)
 CORS_ALLOWED_ORIGINS = [
     # "https://example.com",
     # "https://sub.example.com",
     "http://localhost:3000",
     "http://127.0.0.1:3000",  # 3000 port is here for react app
 ]
+
+
+AUTHENTICATION_BACKENDS = [
+    # ...
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+    # ...
+]
+
+# GOOGLE AUTH
+SITE_ID=2
+
+# LOGIN_REDIRECT_URL = '/'
+
+# ACCOUNT_ADAPTER = 'accountapp.adapters.CustomAccountAdapter'

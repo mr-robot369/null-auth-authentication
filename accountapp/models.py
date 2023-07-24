@@ -42,12 +42,15 @@ class User(AbstractBaseUser):
         unique=True,
     )
     name = models.CharField(max_length=200)
-    tc=models.BooleanField()
+    tc=models.BooleanField(null=True)
+    is_verified = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
-
+    otp=models.CharField(max_length=6,null=True)
+    otp_secret=models.CharField(max_length=200,null=True)
+    dummy_password=models.CharField(max_length=200,null=True)
     objects = UserManager()
 
     USERNAME_FIELD = "email"  # by default required
@@ -71,3 +74,12 @@ class User(AbstractBaseUser):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
+    
+# class OTP(models.Model):
+#     user=models.OneToOneField(User, on_delete=models.CASCADE)
+#     otp=models.CharField(max_length=6)
+#     created_at=models.DateTimeField(auto_now_add=True)
+#     is_used=models.BooleanField(default=False)
+
+#     def __str__(self) -> str:
+#         return f"{self.user.email} - {self.otp}"

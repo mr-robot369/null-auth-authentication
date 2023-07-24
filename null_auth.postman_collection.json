@@ -1,0 +1,420 @@
+{
+	"info": {
+		"_postman_id": "d3b98b3b-f416-4b57-89e5-975b5c9ac74a",
+		"name": "null_auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28101485",
+		"_collection_link": "https://red-flare-512641.postman.co/workspace/New-Team-Workspace~bc7c9091-a01b-48f0-a79e-996f3df4be58/collection/28101485-d3b98b3b-f416-4b57-89e5-975b5c9ac74a?action=share&creator=28101485&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "job seeker Registration",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"webd.techwhiz@gmail.com\",\r\n    \"name\": \"Techwhiz\",\r\n    \"tc\":\"True\",\r\n    \"password\": \"12345678\",\r\n    \"password2\": \"12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user/register/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verify otp",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"webd.techwhiz@gmail.com\",\r\n    \"otp\":\"297217\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user/otp/verify/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"otp",
+						"verify",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change password otp send",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwMTM2MzczLCJpYXQiOjE2OTAxMzUxNzMsImp0aSI6IjdmYWIzMWRkZTMyNjRlM2FhMGJhZjU4YTFkOGVhZTBmIiwidXNlcl9pZCI6M30.Z2Dv55Ci17FkPwZfimpyZBsQp4SlPOWF4gHNrFS9X4E",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\":\"123456\",\r\n    \"password2\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user/changepassword/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"changepassword",
+						""
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"events.at.du@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change password otp verify",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwMTM2MzczLCJpYXQiOjE2OTAxMzUxNzMsImp0aSI6IjdmYWIzMWRkZTMyNjRlM2FhMGJhZjU4YTFkOGVhZTBmIiwidXNlcl9pZCI6M30.Z2Dv55Ci17FkPwZfimpyZBsQp4SlPOWF4gHNrFS9X4E",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"otp\":\"578777\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user/changepassword/otp/verify/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"changepassword",
+						"otp",
+						"verify",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send Password Reset Email",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"events.at.du@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user/forget-password/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"forget-password",
+						""
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reset User Password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\": \"1234567890\",\r\n    \"password2\": \"1234567890\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user/reset-password/Mw/brpwml-f0d7928c6a061e8b46ae148384da698b/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"reset-password",
+						"Mw",
+						"brpwml-f0d7928c6a061e8b46ae148384da698b",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "google get token (not needed)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\":\"4/0AZEOvhUWoOpesRpqnv0mq52kMgbJsyUvWVeXzQuoQdR_AqcJIyGx2eRRl8Mf7fg9itU9dg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/user/auth/google/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"auth",
+						"google",
+						""
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "additional details",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"bhaianubhav300@gmail.com\",\r\n    \"name\": \"NEW Anubhav\",\r\n    \"tc\":\"True\",\r\n    \"password\": \"12345678\",\r\n    \"password2\": \"12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user/google/additional-details/?access_token=ya29.a0AbVbY6P-TPIjwGmFXHD7C7wBWhOceRMrOnSodeOE86_cFwEgKR1WdMZF7ed9gT6rcLFKwVjwhFhSwF-vn1OFSHBvD1kNct218aWg2Tu4W177j6JFGgP5QW5MqcLwI5KBPuB4nDbRdIPZrX-k3iFYAwnWzhoxkgaCgYKAQ0SARISFQFWKvPl9VxjUL001tYl1G4l0nmkjw0165",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"google",
+						"additional-details",
+						""
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "ya29.a0AbVbY6P-TPIjwGmFXHD7C7wBWhOceRMrOnSodeOE86_cFwEgKR1WdMZF7ed9gT6rcLFKwVjwhFhSwF-vn1OFSHBvD1kNct218aWg2Tu4W177j6JFGgP5QW5MqcLwI5KBPuB4nDbRdIPZrX-k3iFYAwnWzhoxkgaCgYKAQ0SARISFQFWKvPl9VxjUL001tYl1G4l0nmkjw0165"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user profile",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
