@@ -412,7 +412,35 @@
 			"name": "user profile",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwMjI3NTIxLCJpYXQiOjE2OTAyMjYzMjEsImp0aSI6ImVmMmRmZmRjNzNmNDQzNDc4MjdlNDVlNmM0OWZhZmFjIiwidXNlcl9pZCI6OX0.yvsVZF8Uvd6uhKy12I44on_ayZUTIE1f6zCyrchSmJ4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user/profile/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"profile",
+						""
+					]
+				}
 			},
 			"response": []
 		}
