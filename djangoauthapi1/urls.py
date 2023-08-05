@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/user/',include('accountapp.urls')),
     path('accounts/', include('allauth.urls')),
+    # path('dj-rest-auth/',include('dj_rest_auth.urls'))
 ]

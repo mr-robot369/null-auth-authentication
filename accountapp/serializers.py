@@ -1,13 +1,11 @@
-from rest_framework import serializers
-from accountapp.models import User
-import pyotp
-# from .views import get_tokens_for_user
-from django.utils import timezone
+from rest_framework import serializers #.
+from accountapp.models import User   #.
+
 from django.utils.encoding import smart_str, force_bytes, DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 
-from accountapp.utils import *
+from accountapp.utils import *  #.
 
 # User registration
 class UserRegistrationSerializer(serializers.ModelSerializer):
@@ -36,17 +34,17 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         return User.objects.create_user(**validate_data)
 
 class OTPVerificationCheckSerializer(serializers.Serializer):
-    email = serializers.EmailField(max_length=255)
+    # email = serializers.EmailField(max_length=255)
     otp=serializers.CharField(max_length=6,style={'input_type': 'text'})
     class Meta:
-        fields = ["email",'otp']
+        fields = ['otp']
 
     def validate(self, attrs):
         try:
-            email = attrs.get('email')
+            email = self.context.get('email')
             otp_value = attrs.get('otp')
             
-            user = User.objects.get(email=email, otp=otp_value)
+            user = User.objects.get(email=email)
 
             if OTP.verify_otp(user,otp_value):
                 user.is_verified=True
@@ -59,9 +57,7 @@ class OTPVerificationCheckSerializer(serializers.Serializer):
         
         except User.DoesNotExist:
             raise serializers.ValidationError("User not found")
-
-        except:
-            raise serializers.ValidationError("OTP expired. Please try again")
+        
 
 # Login the user 
 class UserLoginSerializer(serializers.ModelSerializer):
@@ -202,11 +198,7 @@ class UserChangePasswordOTPSerializer(serializers.Serializer):
 
 # Additional details required after google auth
 class AdditionalUserInfoSerializer(serializers.ModelSerializer):
-    # email = serializers.EmailField(max_length=255)
-    # name = serializers.CharField(max_length=200)
-    # tc=serializers.BooleanField()
-    # password = serializers.CharField(
-    #     max_length=255, style={'input_type': 'password'}, write_only=True)
+    
     password2 = serializers.CharField(
         max_length=255, style={'input_type': 'password'}, write_only=True)
     
@@ -219,9 +211,15 @@ class AdditionalUserInfoSerializer(serializers.ModelSerializer):
 
     # Validating Password and Confirm Password
     def validate(self, attrs):
+        google_mail = self.context.get('google_mail')
+        email = attrs.get('email')
         password = attrs.get('password')
         password2 = attrs.get('password2')
-        if password != password2:
+        if email != google_mail:
+            raise serializers.ValidationError(
+                "Invalid Email")
+        
+        elif password != password2:
             raise serializers.ValidationError(
                 "Password and Confirm Password doesn't match")
         return attrs
