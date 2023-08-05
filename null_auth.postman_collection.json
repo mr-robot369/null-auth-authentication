@@ -8,440 +8,470 @@
 	},
 	"item": [
 		{
-			"name": "job seeker Registration",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"anubhavshukla870@gmail.com\",\r\n    \"name\": \"anubhav\",\r\n    \"tc\":\"True\",\r\n    \"password\": \"12345678\",\r\n    \"password2\": \"12345678\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Registration",
+			"item": [
+				{
+					"name": "job seeker Registration",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"sharmahimanshu1911@gmail.com\",\r\n    \"name\": \"himanshu\",\r\n    \"tc\":\"True\",\r\n    \"password\": \"12345678\",\r\n    \"password2\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/user/register/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"register",
+								""
+							]
 						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:8000/api/user/register/",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"user",
-						"register",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "verify otp",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"otp\":\"207806\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:8000/api/user/otp/verify/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjIxMTgzLCJpYXQiOjE2OTEyMjA4ODMsImp0aSI6ImVhZTY1ZDJlNjZjOTRkNmY4ZjBiMDg1Yjg1M2JmMzA2IiwiZW1haWwiOiJhbnViaGF2c2h1a2xhODcwQGdtYWlsLmNvbSJ9.wUpJ1yOMLOpDbGFwmaS5iYPymzDKJwEfk1shTA3Oqr0",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"user",
-						"otp",
-						"verify",
-						""
-					],
-					"query": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjIxMTgzLCJpYXQiOjE2OTEyMjA4ODMsImp0aSI6ImVhZTY1ZDJlNjZjOTRkNmY4ZjBiMDg1Yjg1M2JmMzA2IiwiZW1haWwiOiJhbnViaGF2c2h1a2xhODcwQGdtYWlsLmNvbSJ9.wUpJ1yOMLOpDbGFwmaS5iYPymzDKJwEfk1shTA3Oqr0"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "change password otp send",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
 					},
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjIyMjgyLCJpYXQiOjE2OTEyMjEwODIsImp0aSI6ImE5ZjRiMDc0MGMyNjQ0ZGE4OTEwM2Y5YzA2NjUxYjhlIiwidXNlcl9pZCI6MzIsIm5hbWUiOiJhbnViaGF2IiwiZW1haWwiOiJhbnViaGF2c2h1a2xhODcwQGdtYWlsLmNvbSJ9.AMtbGUZKTz-e7qC0ygWQ3R2GSsg1vqVU5b5mzwSZglk",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"password\":\"123456\",\r\n    \"password2\":\"123456\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"response": []
 				},
-				"url": {
-					"raw": "http://127.0.0.1:8000/api/user/changepassword/",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"user",
-						"changepassword",
-						""
-					],
-					"query": [
-						{
-							"key": "",
-							"value": null,
-							"disabled": true
+				{
+					"name": "verify otp",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"otp\":\"844115\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/user/otp/verify/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjU1MzE2LCJpYXQiOjE2OTEyNTUwMTYsImp0aSI6IjA4ZWFmNDlmNjUyOTRjYjJiZDczNmFlZTUzOGE4NGMyIiwiZW1haWwiOiJzaGFybWFoaW1hbnNodTE5MTFAZ21haWwuY29tIn0.uweADL2jbKGwZRJQTUA43E4WeiTBtpCg_nNjfBSku5k",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"otp",
+								"verify",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjU1MzE2LCJpYXQiOjE2OTEyNTUwMTYsImp0aSI6IjA4ZWFmNDlmNjUyOTRjYjJiZDczNmFlZTUzOGE4NGMyIiwiZW1haWwiOiJzaGFybWFoaW1hbnNodTE5MTFAZ21haWwuY29tIn0.uweADL2jbKGwZRJQTUA43E4WeiTBtpCg_nNjfBSku5k"
+								}
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Login User",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"anubhavshukla870@gmail.com\",\r\n    \"password\": \"1234567890\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:8000/api/user/login/",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"user",
-						"login",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "change password otp verify",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
 					},
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjIyMjgyLCJpYXQiOjE2OTEyMjEwODIsImp0aSI6ImE5ZjRiMDc0MGMyNjQ0ZGE4OTEwM2Y5YzA2NjUxYjhlIiwidXNlcl9pZCI6MzIsIm5hbWUiOiJhbnViaGF2IiwiZW1haWwiOiJhbnViaGF2c2h1a2xhODcwQGdtYWlsLmNvbSJ9.AMtbGUZKTz-e7qC0ygWQ3R2GSsg1vqVU5b5mzwSZglk",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"otp\":\"659481\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:8000/api/user/changepassword/otp/verify/",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"user",
-						"changepassword",
-						"otp",
-						"verify",
-						""
-					]
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Send Password Reset Email",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"anubhavshukla870@gmail.com\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Log in",
+			"item": [
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"anubhavshukla870@gmail.com\",\r\n    \"password\": \"anu1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/user/login/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"login",
+								""
+							]
 						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:8000/api/user/forget-password/",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"user",
-						"forget-password",
-						""
-					],
-					"query": [
-						{
-							"key": "",
-							"value": null,
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Reset User Password",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"password\": \"1234567890\",\r\n    \"password2\": \"1234567890\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:8000/api/user/reset-password/MzI/bsgnid-ab7b661eb3248e4deb579190264dba16/",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"user",
-						"reset-password",
-						"MzI",
-						"bsgnid-ab7b661eb3248e4deb579190264dba16",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "additional details",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
 					},
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwNDg1NzczLCJpYXQiOjE2OTA0ODU0NzMsImp0aSI6IjJkNTAxNzk4MmUxMzRlYzFhMmI3ODNmNjcyZDFmOGJmIiwiZW1haWwiOiJiaGFpYW51YmhhdjMwMEBnbWFpbC5jb20ifQ._ig0Gsx6zzojau5T1KRK_OQdHzUxE0FwMoCkqTo8zBs",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"bhaianubhav300@gmail.com\",\r\n    \"name\": \"NEW Anubhav\",\r\n    \"tc\":\"True\",\r\n    \"password\": \"12345678\",\r\n    \"password2\": \"12345678\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:8000/api/user/google/additional-details/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjIzODg5LCJpYXQiOjE2OTEyMjM1ODksImp0aSI6Ijk5NWZlMGQ0MTVkNjRiZDU5NTlhNDM4NmU0NGQ5NWM5IiwiZW1haWwiOiJiaGFpYW51YmhhdjMwMEBnbWFpbC5jb20ifQ.w-5c6rzwylB7SnC8jZLVFXWFD6SMUXSQ6Bx9mHTj7iM",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"user",
-						"google",
-						"additional-details",
-						""
-					],
-					"query": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjIzODg5LCJpYXQiOjE2OTEyMjM1ODksImp0aSI6Ijk5NWZlMGQ0MTVkNjRiZDU5NTlhNDM4NmU0NGQ5NWM5IiwiZW1haWwiOiJiaGFpYW51YmhhdjMwMEBnbWFpbC5jb20ifQ.w-5c6rzwylB7SnC8jZLVFXWFD6SMUXSQ6Bx9mHTj7iM"
-						}
-					]
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "user profile",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
+			"name": "Change password (logged in user)",
+			"item": [
+				{
+					"name": "change password for logged in user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjYzMjM1LCJpYXQiOjE2OTEyNjIwMzUsImp0aSI6IjY4NWEzZjgzMDY5NDRlZWM4OThhYTk0YzUwYjU2MmFlIiwidXNlcl9pZCI6MzJ9.ObZnPzdlLr9kGLEHw5ANMgxNjwSWoIIhv9dSwcd1c2w",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\":\"anu12345\",\r\n    \"password2\":\"anu12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/user/changepassword/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"changepassword",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
 					},
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjI0ODEwLCJpYXQiOjE2OTEyMjM2MTAsImp0aSI6ImQwZTM4NjM4YTY4ZjRjY2M5ZjA5ZmQzYWU5ZmFmNWU1IiwidXNlcl9pZCI6MzQsIm5hbWUiOiJORVcgQW51YmhhdiIsImVtYWlsIjoiYmhhaWFudWJoYXYzMDBAZ21haWwuY29tIn0.N6GBYnRhLhx-1lUWJPpghvCeFazrcW7ubBItrGB-oGs",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://127.0.0.1:8000/api/user/profile/",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"user",
-						"profile",
-						""
-					]
+					"response": []
+				},
+				{
+					"name": "change password otp verify",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjYzMjM1LCJpYXQiOjE2OTEyNjIwMzUsImp0aSI6IjY4NWEzZjgzMDY5NDRlZWM4OThhYTk0YzUwYjU2MmFlIiwidXNlcl9pZCI6MzJ9.ObZnPzdlLr9kGLEHw5ANMgxNjwSWoIIhv9dSwcd1c2w",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"otp\":\"639592\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/user/changepassword/otp/verify/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"changepassword",
+								"otp",
+								"verify",
+								""
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "google redirect",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://127.0.0.1:8000/api/user/google/login/",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"user",
-						"google",
-						"login",
-						""
-					]
+			"name": "User profile",
+			"item": [
+				{
+					"name": "user profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjI0ODEwLCJpYXQiOjE2OTEyMjM2MTAsImp0aSI6ImQwZTM4NjM4YTY4ZjRjY2M5ZjA5ZmQzYWU5ZmFmNWU1IiwidXNlcl9pZCI6MzQsIm5hbWUiOiJORVcgQW51YmhhdiIsImVtYWlsIjoiYmhhaWFudWJoYXYzMDBAZ21haWwuY29tIn0.N6GBYnRhLhx-1lUWJPpghvCeFazrcW7ubBItrGB-oGs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/user/profile/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"profile",
+								""
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "Forget Password",
+			"item": [
+				{
+					"name": "Send Password Reset Email",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"anubhavshukla870@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/user/forget-password/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"forget-password",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset User Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"anu1234\",\r\n    \"password2\": \"anu1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/user/reset-password/MzI/bship5-e88019dad3b10a7bb87e7e439f3b670b/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"reset-password",
+								"MzI",
+								"bship5-e88019dad3b10a7bb87e7e439f3b670b",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Google auth",
+			"item": [
+				{
+					"name": "additional details",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwNDg1NzczLCJpYXQiOjE2OTA0ODU0NzMsImp0aSI6IjJkNTAxNzk4MmUxMzRlYzFhMmI3ODNmNjcyZDFmOGJmIiwiZW1haWwiOiJiaGFpYW51YmhhdjMwMEBnbWFpbC5jb20ifQ._ig0Gsx6zzojau5T1KRK_OQdHzUxE0FwMoCkqTo8zBs",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"anubhavshuklamatsc21@pgdav.du.ac.in\",\r\n    \"name\": \"NEW Anubhav\",\r\n    \"tc\":\"True\",\r\n    \"password\": \"12345678\",\r\n    \"password2\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/user/google/additional-details/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjU2MTM0LCJpYXQiOjE2OTEyNTU4MzQsImp0aSI6ImRhMWJiOGU4MDlmMzQ2OThhNmExYmU2ZTJhZWQzN2NiIiwiZW1haWwiOiJhbnViaGF2c2h1a2xhbWF0c2MyMUBwZ2Rhdi5kdS5hYy5pbiJ9.gd0xBD_hqBuin2w181GKAwgAakvuTU0YA8cy70hR1FQ",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"google",
+								"additional-details",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjU2MTM0LCJpYXQiOjE2OTEyNTU4MzQsImp0aSI6ImRhMWJiOGU4MDlmMzQ2OThhNmExYmU2ZTJhZWQzN2NiIiwiZW1haWwiOiJhbnViaGF2c2h1a2xhbWF0c2MyMUBwZ2Rhdi5kdS5hYy5pbiJ9.gd0xBD_hqBuin2w181GKAwgAakvuTU0YA8cy70hR1FQ"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "google redirect",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/user/google/login/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"google",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

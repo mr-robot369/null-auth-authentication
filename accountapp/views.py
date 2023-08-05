@@ -217,7 +217,7 @@ class CallbackHandleView(APIView):
         token_response = requests.post('https://oauth2.googleapis.com/token', data=data)
         token_data = token_response.json()
 
-        if 'error' in token_data:
+        if 'error' in token_data: 
             return Response({"error": "Failed to get access token from Google."}, status=status.HTTP_400_BAD_REQUEST)
 
         # Get the access token from the response

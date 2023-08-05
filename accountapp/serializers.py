@@ -126,6 +126,8 @@ class UserPasswordResetSerializer(serializers.Serializer):
             user = User.objects.get(id=id)
             if not PasswordResetTokenGenerator().check_token(user, token):
                 raise serializers.ValidationError("Token is not valid or Expired")
+            if user.check_password(password):
+                raise serializers.ValidationError("New Password can't be same as old password")
             user.set_password(password)
             user.save()
             return attrs
@@ -153,7 +155,8 @@ class UserChangePasswordSerializer(serializers.Serializer):
                 "Password and Confirm Password doesn't match")
         # user.set_password(password)
         # user.save()
-
+        if user.check_password(password):
+                raise serializers.ValidationError("New Password can't be same as old password")
         user.dummy_password=password
         otp,secret=OTP.generate_otp()
         user.otp=otp
