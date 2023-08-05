@@ -20,7 +20,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"webd.techwhiz@gmail.com\",\r\n    \"name\": \"Techwhiz\",\r\n    \"tc\":\"True\",\r\n    \"password\": \"12345678\",\r\n    \"password2\": \"12345678\"\r\n}",
+					"raw": "{\r\n    \"email\": \"anubhavshukla870@gmail.com\",\r\n    \"name\": \"anubhav\",\r\n    \"tc\":\"True\",\r\n    \"password\": \"12345678\",\r\n    \"password2\": \"12345678\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -60,7 +60,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"webd.techwhiz@gmail.com\",\r\n    \"otp\":\"297217\"\r\n}",
+					"raw": "{\r\n    \"otp\":\"207806\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -68,7 +68,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/user/otp/verify/",
+					"raw": "http://127.0.0.1:8000/api/user/otp/verify/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjIxMTgzLCJpYXQiOjE2OTEyMjA4ODMsImp0aSI6ImVhZTY1ZDJlNjZjOTRkNmY4ZjBiMDg1Yjg1M2JmMzA2IiwiZW1haWwiOiJhbnViaGF2c2h1a2xhODcwQGdtYWlsLmNvbSJ9.wUpJ1yOMLOpDbGFwmaS5iYPymzDKJwEfk1shTA3Oqr0",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -83,6 +83,12 @@
 						"otp",
 						"verify",
 						""
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjIxMTgzLCJpYXQiOjE2OTEyMjA4ODMsImp0aSI6ImVhZTY1ZDJlNjZjOTRkNmY4ZjBiMDg1Yjg1M2JmMzA2IiwiZW1haWwiOiJhbnViaGF2c2h1a2xhODcwQGdtYWlsLmNvbSJ9.wUpJ1yOMLOpDbGFwmaS5iYPymzDKJwEfk1shTA3Oqr0"
+						}
 					]
 				}
 			},
@@ -100,7 +106,7 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwMTM2MzczLCJpYXQiOjE2OTAxMzUxNzMsImp0aSI6IjdmYWIzMWRkZTMyNjRlM2FhMGJhZjU4YTFkOGVhZTBmIiwidXNlcl9pZCI6M30.Z2Dv55Ci17FkPwZfimpyZBsQp4SlPOWF4gHNrFS9X4E",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjIyMjgyLCJpYXQiOjE2OTEyMjEwODIsImp0aSI6ImE5ZjRiMDc0MGMyNjQ0ZGE4OTEwM2Y5YzA2NjUxYjhlIiwidXNlcl9pZCI6MzIsIm5hbWUiOiJhbnViaGF2IiwiZW1haWwiOiJhbnViaGF2c2h1a2xhODcwQGdtYWlsLmNvbSJ9.AMtbGUZKTz-e7qC0ygWQ3R2GSsg1vqVU5b5mzwSZglk",
 						"type": "text"
 					}
 				],
@@ -153,7 +159,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"events.at.du@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+					"raw": "{\r\n    \"email\": \"anubhavshukla870@gmail.com\",\r\n    \"password\": \"1234567890\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -192,13 +198,13 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwMTM2MzczLCJpYXQiOjE2OTAxMzUxNzMsImp0aSI6IjdmYWIzMWRkZTMyNjRlM2FhMGJhZjU4YTFkOGVhZTBmIiwidXNlcl9pZCI6M30.Z2Dv55Ci17FkPwZfimpyZBsQp4SlPOWF4gHNrFS9X4E",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjIyMjgyLCJpYXQiOjE2OTEyMjEwODIsImp0aSI6ImE5ZjRiMDc0MGMyNjQ0ZGE4OTEwM2Y5YzA2NjUxYjhlIiwidXNlcl9pZCI6MzIsIm5hbWUiOiJhbnViaGF2IiwiZW1haWwiOiJhbnViaGF2c2h1a2xhODcwQGdtYWlsLmNvbSJ9.AMtbGUZKTz-e7qC0ygWQ3R2GSsg1vqVU5b5mzwSZglk",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"otp\":\"578777\"\r\n}",
+					"raw": "{\r\n    \"otp\":\"659481\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -240,7 +246,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"events.at.du@gmail.com\"\r\n}",
+					"raw": "{\r\n    \"email\":\"anubhavshukla870@gmail.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -295,7 +301,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/user/reset-password/Mw/brpwml-f0d7928c6a061e8b46ae148384da698b/",
+					"raw": "http://127.0.0.1:8000/api/user/reset-password/MzI/bsgnid-ab7b661eb3248e4deb579190264dba16/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -308,54 +314,9 @@
 						"api",
 						"user",
 						"reset-password",
-						"Mw",
-						"brpwml-f0d7928c6a061e8b46ae148384da698b",
+						"MzI",
+						"bsgnid-ab7b661eb3248e4deb579190264dba16",
 						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "google get token (not needed)",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"code\":\"4/0AZEOvhUWoOpesRpqnv0mq52kMgbJsyUvWVeXzQuoQdR_AqcJIyGx2eRRl8Mf7fg9itU9dg\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8000/api/user/auth/google/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"user",
-						"auth",
-						"google",
-						""
-					],
-					"query": [
-						{
-							"key": "code",
-							"value": "",
-							"disabled": true
-						}
 					]
 				}
 			},
@@ -370,11 +331,17 @@
 						"key": "Accept",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwNDg1NzczLCJpYXQiOjE2OTA0ODU0NzMsImp0aSI6IjJkNTAxNzk4MmUxMzRlYzFhMmI3ODNmNjcyZDFmOGJmIiwiZW1haWwiOiJiaGFpYW51YmhhdjMwMEBnbWFpbC5jb20ifQ._ig0Gsx6zzojau5T1KRK_OQdHzUxE0FwMoCkqTo8zBs",
+						"type": "text",
+						"disabled": true
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"bhaianubhav300@gmail.com\",\r\n    \"name\": \"NEW Anubhav\",\r\n    \"tc\":\"True\",\r\n    \"password\": \"12345678\",\r\n    \"password2\": \"12345678\"\r\n}",
+					"raw": "{\r\n    \"email\":\"bhaianubhav300@gmail.com\",\r\n    \"name\": \"NEW Anubhav\",\r\n    \"tc\":\"True\",\r\n    \"password\": \"12345678\",\r\n    \"password2\": \"12345678\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -382,7 +349,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/user/google/additional-details/?access_token=ya29.a0AbVbY6P-TPIjwGmFXHD7C7wBWhOceRMrOnSodeOE86_cFwEgKR1WdMZF7ed9gT6rcLFKwVjwhFhSwF-vn1OFSHBvD1kNct218aWg2Tu4W177j6JFGgP5QW5MqcLwI5KBPuB4nDbRdIPZrX-k3iFYAwnWzhoxkgaCgYKAQ0SARISFQFWKvPl9VxjUL001tYl1G4l0nmkjw0165",
+					"raw": "http://127.0.0.1:8000/api/user/google/additional-details/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjIzODg5LCJpYXQiOjE2OTEyMjM1ODksImp0aSI6Ijk5NWZlMGQ0MTVkNjRiZDU5NTlhNDM4NmU0NGQ5NWM5IiwiZW1haWwiOiJiaGFpYW51YmhhdjMwMEBnbWFpbC5jb20ifQ.w-5c6rzwylB7SnC8jZLVFXWFD6SMUXSQ6Bx9mHTj7iM",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -400,8 +367,8 @@
 					],
 					"query": [
 						{
-							"key": "access_token",
-							"value": "ya29.a0AbVbY6P-TPIjwGmFXHD7C7wBWhOceRMrOnSodeOE86_cFwEgKR1WdMZF7ed9gT6rcLFKwVjwhFhSwF-vn1OFSHBvD1kNct218aWg2Tu4W177j6JFGgP5QW5MqcLwI5KBPuB4nDbRdIPZrX-k3iFYAwnWzhoxkgaCgYKAQ0SARISFQFWKvPl9VxjUL001tYl1G4l0nmkjw0165"
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjIzODg5LCJpYXQiOjE2OTEyMjM1ODksImp0aSI6Ijk5NWZlMGQ0MTVkNjRiZDU5NTlhNDM4NmU0NGQ5NWM5IiwiZW1haWwiOiJiaGFpYW51YmhhdjMwMEBnbWFpbC5jb20ifQ.w-5c6rzwylB7SnC8jZLVFXWFD6SMUXSQ6Bx9mHTj7iM"
 						}
 					]
 				}
@@ -420,7 +387,7 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwMjI3NTIxLCJpYXQiOjE2OTAyMjYzMjEsImp0aSI6ImVmMmRmZmRjNzNmNDQzNDc4MjdlNDVlNmM0OWZhZmFjIiwidXNlcl9pZCI6OX0.yvsVZF8Uvd6uhKy12I44on_ayZUTIE1f6zCyrchSmJ4",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjI0ODEwLCJpYXQiOjE2OTEyMjM2MTAsImp0aSI6ImQwZTM4NjM4YTY4ZjRjY2M5ZjA5ZmQzYWU5ZmFmNWU1IiwidXNlcl9pZCI6MzQsIm5hbWUiOiJORVcgQW51YmhhdiIsImVtYWlsIjoiYmhhaWFudWJoYXYzMDBAZ21haWwuY29tIn0.N6GBYnRhLhx-1lUWJPpghvCeFazrcW7ubBItrGB-oGs",
 						"type": "text"
 					}
 				],
@@ -438,6 +405,38 @@
 						"api",
 						"user",
 						"profile",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "google redirect",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user/google/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"google",
+						"login",
 						""
 					]
 				}
