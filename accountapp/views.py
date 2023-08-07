@@ -38,15 +38,21 @@ class GenerateToken:
         }
 
     @staticmethod
-    def generate_dummy_jwt_token(email):
+    def generate_dummy_jwt_token(Cpayload):
         # creating custom payload with 5 minutes expiration time
-        custom_payload={"email":email,'exp':datetime.datetime.utcnow() + datetime.timedelta(minutes=5)}
-
+        custom_payload={'exp':datetime.datetime.utcnow() + datetime.timedelta(minutes=5)}
+        custom_payload.update(Cpayload)
         # Create a new AccessToken with the custom payload
         access_token = AccessToken()
         access_token.payload.update(custom_payload)
         return str(access_token)
 
+    @staticmethod
+    def add_payload(token,payload):
+        access_token = AccessToken(token)
+        access_token.payload.update(payload)
+        return str(access_token)
+    
     @staticmethod
     def verify_and_get_payload(token):
         try:
@@ -83,9 +89,11 @@ class UserRegistrationView(APIView):
         user = User.objects.get(email=email)
         
         # print(user.email)
-        token=GenerateToken.generate_dummy_jwt_token(user.email)
+        payload={"email":user.email}
+        token=GenerateToken.generate_dummy_jwt_token(payload)
 
         otp,secret=OTP.generate_otp()
+        user.provider="local"
         user.otp=otp
         user.otp_secret=secret
         user.save()
@@ -107,9 +115,9 @@ class OTPVerificationCheckView(APIView):
     renderer_classes=[UserRenderer]
     def post(self, request,format=None):
         dummy_token=request.query_params.get('token')
-
         try:
             payload = GenerateToken.verify_and_get_payload(dummy_token)
+            # print(payload)
         except InvalidToken as e:
             return Response({"error": str(e)}, status=401)
         except TokenError as e:
@@ -167,6 +175,7 @@ class UserChangePasswordView(APIView):
     renderer_classes=[UserRenderer]
     permission_classes=[IsAuthenticated]
     def post(self,request,format=None):
+        print(request.META.get('Authorization'))
         serializer=UserChangePasswordSerializer(data=request.data,context={'user':request.user})
         serializer.is_valid(raise_exception=True)
         return Response({'msg':'OTP Sent Successfully. Please Check your Email'},status=status.HTTP_200_OK)    
@@ -229,12 +238,15 @@ class CallbackHandleView(APIView):
         # Use the access token to retrieve user information from Google
         user_info_response = requests.get(f'https://www.googleapis.com/oauth2/v2/userinfo?access_token={access_token}')
         user_info = user_info_response.json()
-
-        # Extract the email from the user information
+        # print(user_info)
+        # Extract the email and name from the user information
         email = user_info.get('email', None)
+        name = user_info.get('name', None)
         if not email:
             return Response({"error": "Failed to get email from Google user info."}, status=status.HTTP_400_BAD_REQUEST)
-
+        if not name:
+            return Response({"error": "Failed to get name from Google user info."}, status=status.HTTP_400_BAD_REQUEST)
+        
         try:
         # Login the user
             user = User.objects.get(email=email)
@@ -242,35 +254,23 @@ class CallbackHandleView(APIView):
             return Response({'token':jwt_token,'msg':'Login Success'},status=status.HTTP_200_OK)
         
         except User.DoesNotExist:
-        # If Email does not exist, we have to redirect the user to additional details page
-            
-            token=GenerateToken.generate_dummy_jwt_token(email)
-            redirect_url = settings.ADDITIONAL_DETAILS_URL
-            # redirect_url += f'?token={urllib.parse.quote(token)}'
-            return Response({"redirect_url": redirect_url,"token":token}, status=status.HTTP_200_OK)
+            userdata={"email":email,"name":name}
+            serializer=GoogleAuthSerializer(data=request.data,context={"userdata":userdata})
+            serializer.is_valid(raise_exception=True)
+            user=serializer.save()
+            user.provider="google"
+            user.is_verified=True
+            user.save()
+            token=GenerateToken.get_tokens_for_user(user)
+            return Response({'msg':'Registration Completed',"token":token},status=status.HTTP_201_CREATED)
         
         except:
             return Response({"errors":"Invalid user"}, status=status.HTTP_400_BAD_REQUEST)
+    
 
-# get additional details and do the registartion part
-class AdditionalUserInfoView(APIView):
+class RestrictedPage(APIView):
     renderer_classes=[UserRenderer]
-    def post(self,request, format=None):
-        token=request.query_params.get('token')
-        try:
-            # Verify the token and get the payload
-            payload = GenerateToken.verify_and_get_payload(token)
-        except InvalidToken as e:
-            return Response({"error": str(e)}, status=401)
-        except TokenError as e:
-            return Response({"error": str(e)}, status=400)
-
-        # Access the payload data
-        google_mail = payload.get("email")
-        serializer=AdditionalUserInfoSerializer(data=request.data,context={'google_mail':google_mail})
-        serializer.is_valid(raise_exception=True)
-        user=serializer.save()
-        user.is_verified=True
-        user.save()
-        token=GenerateToken.get_tokens_for_user(user)
-        return Response({"msg":'Registration Completed',"token":token},status=status.HTTP_201_CREATED)
+    permission_classes=[IsAuthenticated] if settings.ENABLE_AUTHENTICATION else []
+    print(permission_classes)
+    def get(self,request, format=None):
+        return Response({"msg":"I am a restricted page"},status=status.HTTP_200_OK)

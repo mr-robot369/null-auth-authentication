@@ -178,7 +178,7 @@ REST_USE_JWT=True
 JWT_AUTH_COOKIE= 'access_token'
 JWT_AUTH_REFRESH_COOKIE= 'refresh-token'
 
-# USE_JWT=True
+USE_JWT=True
 # user model
 AUTH_USER_MODEL = 'accountapp.User'
 
@@ -193,11 +193,14 @@ EMAIL_USE_TLS=True
 # Django Simple JWT
 from datetime import timedelta
 
-
+# Custom setting for controlling token expiration
+DISABLE_TOKEN_EXPIRATION = False
+ENABLE_AUTHENTICATION = True
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=20),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
-
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=3) if DISABLE_TOKEN_EXPIRATION else timedelta(days=365),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=10) if DISABLE_TOKEN_EXPIRATION else timedelta(days=365),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
     "AUTH_HEADER_TYPES": ("Bearer",),
     "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
     "USER_ID_FIELD": "id",

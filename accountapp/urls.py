@@ -1,12 +1,17 @@
 from django.urls import path,include
-
+from rest_framework_simplejwt.views import TokenRefreshView,TokenVerifyView
 from accountapp.views import *
 
 urlpatterns = [
+    # Generate Access Token using Refresh Token
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+
     path('register/', UserRegistrationView.as_view(),name='register'),
     path('otp/verify/', OTPVerificationCheckView.as_view(),name='verify_otp'),
     path('login/', UserLoginView.as_view(),name='login'),
     path('profile/', UserProfileView.as_view(),name='profile'),
+    path('restricted/', RestrictedPage.as_view(),name='restricted'),
     path('forget-password/',SendPasswordResetEmailView.as_view(),name='send-reset-password-email'),
     path('reset-password/<uid>/<token>/',UserPasswordResetView.as_view(), name="reset-password"),
     
@@ -19,7 +24,7 @@ urlpatterns = [
     # needed for google auth
     path("google/login/",GoogleHandle.as_view(), name="google"),
     path("google/login/callback/", CallbackHandleView.as_view(),name="callback"),
-    path("google/additional-details/", AdditionalUserInfoView.as_view(), name='additonal'),
+    # path("google/additional-details/", AdditionalUserInfoView.as_view(), name='additonal'),
 
     
 ]

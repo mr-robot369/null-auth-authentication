@@ -387,59 +387,6 @@
 			"name": "Google auth",
 			"item": [
 				{
-					"name": "additional details",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwNDg1NzczLCJpYXQiOjE2OTA0ODU0NzMsImp0aSI6IjJkNTAxNzk4MmUxMzRlYzFhMmI3ODNmNjcyZDFmOGJmIiwiZW1haWwiOiJiaGFpYW51YmhhdjMwMEBnbWFpbC5jb20ifQ._ig0Gsx6zzojau5T1KRK_OQdHzUxE0FwMoCkqTo8zBs",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"anubhavshuklamatsc21@pgdav.du.ac.in\",\r\n    \"name\": \"NEW Anubhav\",\r\n    \"tc\":\"True\",\r\n    \"password\": \"12345678\",\r\n    \"password2\": \"12345678\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/user/google/additional-details/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjU2MTM0LCJpYXQiOjE2OTEyNTU4MzQsImp0aSI6ImRhMWJiOGU4MDlmMzQ2OThhNmExYmU2ZTJhZWQzN2NiIiwiZW1haWwiOiJhbnViaGF2c2h1a2xhbWF0c2MyMUBwZ2Rhdi5kdS5hYy5pbiJ9.gd0xBD_hqBuin2w181GKAwgAakvuTU0YA8cy70hR1FQ",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"user",
-								"google",
-								"additional-details",
-								""
-							],
-							"query": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjU2MTM0LCJpYXQiOjE2OTEyNTU4MzQsImp0aSI6ImRhMWJiOGU4MDlmMzQ2OThhNmExYmU2ZTJhZWQzN2NiIiwiZW1haWwiOiJhbnViaGF2c2h1a2xhbWF0c2MyMUBwZ2Rhdi5kdS5hYy5pbiJ9.gd0xBD_hqBuin2w181GKAwgAakvuTU0YA8cy70hR1FQ"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "google redirect",
 					"request": {
 						"method": "GET",
@@ -468,6 +415,106 @@
 								""
 							]
 						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Token",
+			"item": [
+				{
+					"name": "get access token using refresh",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refresh\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY5MTQ3MDkzNCwiaWF0IjoxNjkxMzg0NTM0LCJqdGkiOiI5ZWQxYWU3ZmE2Yzc0ZjdmOGQ4NDkxYzU3NmIyMjIyNyIsInVzZXJfaWQiOjQwfQ.aHY3BX8GnZ6Guxde888nr5MB8GWv1LrcGCUDSlyvIms\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/user/token/refresh/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"token",
+								"refresh",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMzg0ODM0LCJpYXQiOjE2OTEzODQ1MzQsImp0aSI6ImNmZGZjZjJlZjA5NzQwMjI4NGYyNTc1ZmQxYTBjYjk5IiwidXNlcl9pZCI6NDB9.cR1hoLwyusJHUrxKEJwuc4EQ2TdqGVrImszH5qZBO8M\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/user/token/verify/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"token",
+								"verify",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Restricted page",
+			"item": [
+				{
+					"name": "restricted",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}

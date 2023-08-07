@@ -15,7 +15,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['email', 'name', 'tc', 'password', 'password2']
+        fields = ['email', 'name', 'password', 'password2']
         extra_kwargs = {
             'password': {'write_only': True}
         }
@@ -197,37 +197,17 @@ class UserChangePasswordOTPSerializer(serializers.Serializer):
 
         except:
             raise serializers.ValidationError("OTP expired. Please try again")
-        
 
-# Additional details required after google auth
-class AdditionalUserInfoSerializer(serializers.ModelSerializer):
-    
-    password2 = serializers.CharField(
-        max_length=255, style={'input_type': 'password'}, write_only=True)
-    
+class GoogleAuthSerializer(serializers.Serializer):
     class Meta:
         model = User
-        fields = ['email', 'name', 'tc', 'password', 'password2']
-        extra_kwargs = {
-            'password': {'write_only': True}
-        }
-
-    # Validating Password and Confirm Password
+        fields = ['email', 'name']
+    
     def validate(self, attrs):
-        google_mail = self.context.get('google_mail')
-        email = attrs.get('email')
-        password = attrs.get('password')
-        password2 = attrs.get('password2')
-        if email != google_mail:
-            raise serializers.ValidationError(
-                "Invalid Email")
-        
-        elif password != password2:
-            raise serializers.ValidationError(
-                "Password and Confirm Password doesn't match")
-        return attrs
-
+        user_data=self.context.get("userdata")
+        password = User.objects.make_random_password()
+        user_data['password']=password
+        return user_data
+    
     def create(self, validate_data):
-        # print(validate_data)
         return User.objects.create_user(**validate_data)
-        
