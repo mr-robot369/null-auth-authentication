@@ -23,7 +23,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"sharmahimanshu1911@gmail.com\",\r\n    \"name\": \"himanshu\",\r\n    \"tc\":\"True\",\r\n    \"password\": \"12345678\",\r\n    \"password2\": \"12345678\"\r\n}",
+							"raw": "{\r\n    \"email\": \"anubhavshukla870@gmail.com\",\r\n    \"name\": \"Anubhav\",\r\n    \"password\": \"12345678\",\r\n    \"password2\": \"12345678\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -63,7 +63,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"otp\":\"844115\"\r\n}",
+							"raw": "{\r\n    \"otp\":\"227113\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -71,7 +71,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/user/otp/verify/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjU1MzE2LCJpYXQiOjE2OTEyNTUwMTYsImp0aSI6IjA4ZWFmNDlmNjUyOTRjYjJiZDczNmFlZTUzOGE4NGMyIiwiZW1haWwiOiJzaGFybWFoaW1hbnNodTE5MTFAZ21haWwuY29tIn0.uweADL2jbKGwZRJQTUA43E4WeiTBtpCg_nNjfBSku5k",
+							"raw": "http://127.0.0.1:8000/api/user/otp/verify/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMzk3MjQ3LCJpYXQiOjE2OTEzOTY5NDcsImp0aSI6ImFlYmFhMzY0NTA3ZjQ2ZDM5MjJmOGQ3ZmI5MmM5MTU5IiwiZW1haWwiOiJhbnViaGF2c2h1a2xhODcwQGdtYWlsLmNvbSJ9.07HM662fs1BJ2ZJgY5m3rWsu2bNV2hpbYu-VzlJfHgA",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -90,7 +90,7 @@
 							"query": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjU1MzE2LCJpYXQiOjE2OTEyNTUwMTYsImp0aSI6IjA4ZWFmNDlmNjUyOTRjYjJiZDczNmFlZTUzOGE4NGMyIiwiZW1haWwiOiJzaGFybWFoaW1hbnNodTE5MTFAZ21haWwuY29tIn0.uweADL2jbKGwZRJQTUA43E4WeiTBtpCg_nNjfBSku5k"
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMzk3MjQ3LCJpYXQiOjE2OTEzOTY5NDcsImp0aSI6ImFlYmFhMzY0NTA3ZjQ2ZDM5MjJmOGQ3ZmI5MmM5MTU5IiwiZW1haWwiOiJhbnViaGF2c2h1a2xhODcwQGdtYWlsLmNvbSJ9.07HM662fs1BJ2ZJgY5m3rWsu2bNV2hpbYu-VzlJfHgA"
 								}
 							]
 						}
@@ -159,13 +159,13 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjYzMjM1LCJpYXQiOjE2OTEyNjIwMzUsImp0aSI6IjY4NWEzZjgzMDY5NDRlZWM4OThhYTk0YzUwYjU2MmFlIiwidXNlcl9pZCI6MzJ9.ObZnPzdlLr9kGLEHw5ANMgxNjwSWoIIhv9dSwcd1c2w",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMzkwNTYwLCJpYXQiOjE2OTEzOTAwNTQsImp0aSI6ImQxM2VhMGUyN2NmZjQ1OTY5YmRlM2U5NGIyOTM4YTc1IiwidXNlcl9pZCI6NDN9.9S_tGvLjX28bAIJAecXduPPwhM2rPd1xuWK2ekyxSEE",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"password\":\"anu12345\",\r\n    \"password2\":\"anu12345\"\r\n}",
+							"raw": "{\r\n    \"password\":\"123456789\",\r\n    \"password2\":\"123456789\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -211,13 +211,13 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjYzMjM1LCJpYXQiOjE2OTEyNjIwMzUsImp0aSI6IjY4NWEzZjgzMDY5NDRlZWM4OThhYTk0YzUwYjU2MmFlIiwidXNlcl9pZCI6MzJ9.ObZnPzdlLr9kGLEHw5ANMgxNjwSWoIIhv9dSwcd1c2w",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMzkwNTYwLCJpYXQiOjE2OTEzOTAwNTQsImp0aSI6ImQxM2VhMGUyN2NmZjQ1OTY5YmRlM2U5NGIyOTM4YTc1IiwidXNlcl9pZCI6NDN9.9S_tGvLjX28bAIJAecXduPPwhM2rPd1xuWK2ekyxSEE",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"otp\":\"639592\"\r\n}",
+							"raw": "{\r\n    \"otp\":\"585626\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -263,7 +263,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMjI0ODEwLCJpYXQiOjE2OTEyMjM2MTAsImp0aSI6ImQwZTM4NjM4YTY4ZjRjY2M5ZjA5ZmQzYWU5ZmFmNWU1IiwidXNlcl9pZCI6MzQsIm5hbWUiOiJORVcgQW51YmhhdiIsImVtYWlsIjoiYmhhaWFudWJoYXYzMDBAZ21haWwuY29tIn0.N6GBYnRhLhx-1lUWJPpghvCeFazrcW7ubBItrGB-oGs",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyOTMzMzYxLCJpYXQiOjE2OTEzOTczNjEsImp0aSI6IjkwYjQzYmJjNzcxMTQzZjA5ODUyOWQzY2RiOWM4NDgxIiwidXNlcl9pZCI6NDl9.CiIeB3DKSm1HkOisj6D_1UfCDBn2hYH1pCcxp10FYNo",
 								"type": "text"
 							}
 						],
@@ -360,7 +360,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/user/reset-password/MzI/bship5-e88019dad3b10a7bb87e7e439f3b670b/",
+							"raw": "http://127.0.0.1:8000/api/user/reset-password/NDM/bsk9qx-7f7e52aeb3955cd728381cd19d2721d1/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -373,8 +373,8 @@
 								"api",
 								"user",
 								"reset-password",
-								"MzI",
-								"bship5-e88019dad3b10a7bb87e7e439f3b670b",
+								"NDM",
+								"bsk9qx-7f7e52aeb3955cd728381cd19d2721d1",
 								""
 							]
 						}
@@ -436,7 +436,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"refresh\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY5MTQ3MDkzNCwiaWF0IjoxNjkxMzg0NTM0LCJqdGkiOiI5ZWQxYWU3ZmE2Yzc0ZjdmOGQ4NDkxYzU3NmIyMjIyNyIsInVzZXJfaWQiOjQwfQ.aHY3BX8GnZ6Guxde888nr5MB8GWv1LrcGCUDSlyvIms\"\r\n}",
+							"raw": "{\"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY5MjI1NTAyOCwiaWF0IjoxNjkxMzkxMDI4LCJqdGkiOiI2NjZmNzI1YzY3OTM0NmFlYmZjNmQxYTRmM2MzYmVlOCIsInVzZXJfaWQiOjQzfQ.puRzFwS3i5R5bw7iroDikcNV7-mj6Iu7UaHqCPuUtI8\"}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -512,9 +512,44 @@
 			"item": [
 				{
 					"name": "restricted",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyOTI3NjQzLCJpYXQiOjE2OTEzOTE2NDMsImp0aSI6ImU5NjJjYjRlZjlhMzRmMzBiYmU3ZGFkNjk1YzQ1ODg0IiwidXNlcl9pZCI6NDV9.PK7yZ2aF8iQMQh0PJWNlGjDP68ucf-tVOk2AN0qSdfE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/user/restricted/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"restricted",
+								""
+							]
+						}
 					},
 					"response": []
 				}
