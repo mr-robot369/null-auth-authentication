@@ -10,6 +10,7 @@ from rest_framework.response import Response    #.
 from rest_framework import status   #.
 from rest_framework.views import APIView    #.
 from accountapp.models import * #.
+# from Jobapp.models import User
 # from accountapp.serializers import UserRegistrationSerializer, UserLoginSerializer
 from accountapp.serializers import * #.
 from django.contrib.auth import authenticate  #.

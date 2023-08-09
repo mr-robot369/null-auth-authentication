@@ -1,7 +1,7 @@
 from django.db import models
 
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
-
+# from Jobapp.models import User as JobUser
 # Create your models here.
 class UserManager(BaseUserManager):
     def create_user(self, email, name, password=None, password2=None):
@@ -41,6 +41,7 @@ class User(AbstractBaseUser):
     )
     name = models.CharField(max_length=200)
     provider=models.CharField(max_length=50, null=True)
+    # uuid = models.ForeignKey(JobUser, on_delete=models.CASCADE)
     is_verified = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
@@ -49,10 +50,15 @@ class User(AbstractBaseUser):
     otp=models.CharField(max_length=6,null=True)
     otp_secret=models.CharField(max_length=200,null=True)
     dummy_password=models.CharField(max_length=200,null=True)
+
     objects = UserManager()
 
     USERNAME_FIELD = "email"  # by default required
-    REQUIRED_FIELDS = ["name","tc"]
+    REQUIRED_FIELDS = ["name"]
+
+    
+    class Meta:
+        db_table = 'tbl_user_auth'
 
     def __str__(self):
         return self.email
