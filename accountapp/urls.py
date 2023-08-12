@@ -6,7 +6,7 @@ urlpatterns = [
     # Generate Access Token using Refresh Token
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
-
+    
     path('register/', UserRegistrationView.as_view(),name='register'),
     path('otp/verify/', OTPVerificationCheckView.as_view(),name='verify_otp'),
     path('login/', UserLoginView.as_view(),name='login'),
