@@ -4,7 +4,7 @@
 		"name": "null_auth",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "28101485",
-		"_collection_link": "https://red-flare-512641.postman.co/workspace/New-Team-Workspace~bc7c9091-a01b-48f0-a79e-996f3df4be58/collection/28101485-d3b98b3b-f416-4b57-89e5-975b5c9ac74a?action=share&creator=28101485&source=collection_link"
+		"_collection_link": "https://red-flare-512641.postman.co/workspace/New-Team-Workspace~bc7c9091-a01b-48f0-a79e-996f3df4be58/collection/28101485-d3b98b3b-f416-4b57-89e5-975b5c9ac74a?action=share&source=collection_link&creator=28101485"
 	},
 	"item": [
 		{
@@ -63,7 +63,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"otp\":\"227113\"\r\n}",
+							"raw": "{\r\n    \"otp\":\"538121\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -71,7 +71,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/user/otp/verify/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMzk3MjQ3LCJpYXQiOjE2OTEzOTY5NDcsImp0aSI6ImFlYmFhMzY0NTA3ZjQ2ZDM5MjJmOGQ3ZmI5MmM5MTU5IiwiZW1haWwiOiJhbnViaGF2c2h1a2xhODcwQGdtYWlsLmNvbSJ9.07HM662fs1BJ2ZJgY5m3rWsu2bNV2hpbYu-VzlJfHgA",
+							"raw": "http://127.0.0.1:8000/api/user/otp/verify/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxNzc1NTI4LCJpYXQiOjE2OTE3NzUyMjgsImp0aSI6ImJkMGFiNTFjODdjYjRiZjRiZTNhZmI4YTEzZWM3OTI3IiwiZW1haWwiOiJrdW1hci5rLnBhcnRoQGdtYWlsLmNvbSJ9.G8XtrxyCctJeGDGKsco70G-IZemnvLHxrJtxos6hk1s",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -90,7 +90,7 @@
 							"query": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMzk3MjQ3LCJpYXQiOjE2OTEzOTY5NDcsImp0aSI6ImFlYmFhMzY0NTA3ZjQ2ZDM5MjJmOGQ3ZmI5MmM5MTU5IiwiZW1haWwiOiJhbnViaGF2c2h1a2xhODcwQGdtYWlsLmNvbSJ9.07HM662fs1BJ2ZJgY5m3rWsu2bNV2hpbYu-VzlJfHgA"
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxNzc1NTI4LCJpYXQiOjE2OTE3NzUyMjgsImp0aSI6ImJkMGFiNTFjODdjYjRiZjRiZTNhZmI4YTEzZWM3OTI3IiwiZW1haWwiOiJrdW1hci5rLnBhcnRoQGdtYWlsLmNvbSJ9.G8XtrxyCctJeGDGKsco70G-IZemnvLHxrJtxos6hk1s"
 								}
 							]
 						}
@@ -115,7 +115,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"anubhavshukla870@gmail.com\",\r\n    \"password\": \"anu1234\"\r\n}",
+							"raw": "{\r\n    \"email\": \"anubhavshukla870@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -141,6 +141,53 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "verify otp if not verified",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"otp\":\"538121\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/user/otp/verify/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxNzc1NTI4LCJpYXQiOjE2OTE3NzUyMjgsImp0aSI6ImJkMGFiNTFjODdjYjRiZjRiZTNhZmI4YTEzZWM3OTI3IiwiZW1haWwiOiJrdW1hci5rLnBhcnRoQGdtYWlsLmNvbSJ9.G8XtrxyCctJeGDGKsco70G-IZemnvLHxrJtxos6hk1s",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"otp",
+								"verify",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxNzc1NTI4LCJpYXQiOjE2OTE3NzUyMjgsImp0aSI6ImJkMGFiNTFjODdjYjRiZjRiZTNhZmI4YTEzZWM3OTI3IiwiZW1haWwiOiJrdW1hci5rLnBhcnRoQGdtYWlsLmNvbSJ9.G8XtrxyCctJeGDGKsco70G-IZemnvLHxrJtxos6hk1s"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -159,7 +206,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMzkwNTYwLCJpYXQiOjE2OTEzOTAwNTQsImp0aSI6ImQxM2VhMGUyN2NmZjQ1OTY5YmRlM2U5NGIyOTM4YTc1IiwidXNlcl9pZCI6NDN9.9S_tGvLjX28bAIJAecXduPPwhM2rPd1xuWK2ekyxSEE",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIzMDkxOTI3LCJpYXQiOjE2OTE1NTU5MjcsImp0aSI6ImUxYTM4NTZiNmMzYjQwNDZhODQ4M2ZkNmJiZTYxYWM1IiwidXNlcl9pZCI6MX0.AAZjhwXAeJAk95aa5fFMDCt37iAzyoKsqHnMFU_Jcx8",
 								"type": "text"
 							}
 						],
@@ -211,13 +258,13 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMzkwNTYwLCJpYXQiOjE2OTEzOTAwNTQsImp0aSI6ImQxM2VhMGUyN2NmZjQ1OTY5YmRlM2U5NGIyOTM4YTc1IiwidXNlcl9pZCI6NDN9.9S_tGvLjX28bAIJAecXduPPwhM2rPd1xuWK2ekyxSEE",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIzMDkxOTI3LCJpYXQiOjE2OTE1NTU5MjcsImp0aSI6ImUxYTM4NTZiNmMzYjQwNDZhODQ4M2ZkNmJiZTYxYWM1IiwidXNlcl9pZCI6MX0.AAZjhwXAeJAk95aa5fFMDCt37iAzyoKsqHnMFU_Jcx8",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"otp\":\"585626\"\r\n}",
+							"raw": "{\r\n    \"otp\":\"467145\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -240,47 +287,6 @@
 								"changepassword",
 								"otp",
 								"verify",
-								""
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "User profile",
-			"item": [
-				{
-					"name": "user profile",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyOTMzMzYxLCJpYXQiOjE2OTEzOTczNjEsImp0aSI6IjkwYjQzYmJjNzcxMTQzZjA5ODUyOWQzY2RiOWM4NDgxIiwidXNlcl9pZCI6NDl9.CiIeB3DKSm1HkOisj6D_1UfCDBn2hYH1pCcxp10FYNo",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/user/profile/",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"user",
-								"profile",
 								""
 							]
 						}
@@ -360,7 +366,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/user/reset-password/NDM/bsk9qx-7f7e52aeb3955cd728381cd19d2721d1/",
+							"raw": "http://127.0.0.1:8000/api/user/reset-password/MQ/bsntm0-a6b5e7593c75ceedee9469fe2981c69b/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -373,8 +379,8 @@
 								"api",
 								"user",
 								"reset-password",
-								"NDM",
-								"bsk9qx-7f7e52aeb3955cd728381cd19d2721d1",
+								"MQ",
+								"bsntm0-a6b5e7593c75ceedee9469fe2981c69b",
 								""
 							]
 						}
@@ -547,6 +553,47 @@
 								"api",
 								"user",
 								"restricted",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User profile",
+			"item": [
+				{
+					"name": "user profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIzMDkxOTI3LCJpYXQiOjE2OTE1NTU5MjcsImp0aSI6ImUxYTM4NTZiNmMzYjQwNDZhODQ4M2ZkNmJiZTYxYWM1IiwidXNlcl9pZCI6MX0.AAZjhwXAeJAk95aa5fFMDCt37iAzyoKsqHnMFU_Jcx8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/user/profile/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"profile",
 								""
 							]
 						}
