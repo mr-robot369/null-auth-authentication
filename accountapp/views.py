@@ -78,6 +78,24 @@ class GenerateToken:
     #     except Exception as e:
     #         raise TokenError(e)
     
+def OTP_DummyToken(user):
+    payload={"email":user.email}
+    token=GenerateToken.generate_dummy_jwt_token(payload)
+    otp,secret=OTP.generate_otp()
+    user.otp=otp
+    user.otp_secret=secret
+    user.save()
+    # Send Email
+    body=f'''OTP to verify your account {otp}
+This otp is valid only for 5 minutes
+'''
+    data={
+        'subject':'Verify your account',
+        'body': body,
+        'to_email':user.email
+    }
+    Util.send_email(data)
+    return token
 
 # Registering the user with otp verification and directly log in the user
 class UserRegistrationView(APIView):
@@ -88,27 +106,8 @@ class UserRegistrationView(APIView):
         email=serializer.save()
         
         user = User.objects.get(email=email)
-        
-        # print(user.email)
-        payload={"email":user.email}
-        token=GenerateToken.generate_dummy_jwt_token(payload)
-
-        otp,secret=OTP.generate_otp()
         user.provider="local"
-        user.otp=otp
-        user.otp_secret=secret
-        user.save()
-
-        # Send Email
-        body=f'''OTP to verify your account {otp}
-This otp is valid only for 5 minutes
-'''
-        data={
-            'subject':'Verify your account',
-            'body': body,
-            'to_email':user.email
-        }
-        Util.send_email(data)
+        token=OTP_DummyToken(user)
         return Response({'msg':'OTP Sent Successfully. Please Check your Email','url':'otp/verify/','token':token},
         status=status.HTTP_200_OK)
 
@@ -128,7 +127,7 @@ class OTPVerificationCheckView(APIView):
         serializer.is_valid(raise_exception=True)
         user=serializer.validated_data['user']
         token=GenerateToken.get_tokens_for_user(user)
-        return Response({'msg':'OTP Verified Successfully! Registration Completed',"token":token},status=status.HTTP_201_CREATED)
+        return Response({'msg':'OTP Verified Successfully!',"token":token},status=status.HTTP_201_CREATED)
     
 # Login the user and generate JWT token
 class UserLoginView(APIView):
@@ -140,8 +139,12 @@ class UserLoginView(APIView):
         password=serializer.data.get('password')
         user= authenticate(email=email,password=password)
         if user is not None:
-            token=GenerateToken.get_tokens_for_user(user)
-            return Response({'token':token,'msg':'Login Success'},status=status.HTTP_200_OK)
+            if user.is_verified:
+                token=GenerateToken.get_tokens_for_user(user)
+                return Response({'token':token,'msg':'Login Success'},status=status.HTTP_200_OK)
+            else:
+                token=OTP_DummyToken(user)
+                return Response({'msg':'User not verified','token':token},status=status.HTTP_409_CONFLICT)
         else:
             return Response({'errors':{'non_field_errors':['Email or Password is not valid']}},
             status=status.HTTP_404_NOT_FOUND)
@@ -275,3 +278,5 @@ class RestrictedPage(APIView):
     print(permission_classes)
     def get(self,request, format=None):
         return Response({"msg":"I am a restricted page"},status=status.HTTP_200_OK)
+    
+
