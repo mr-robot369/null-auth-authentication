@@ -1,83 +1,102 @@
-import re
 import uuid
 import django.core.exceptions
-from django.shortcuts import render
 from Jobapp.validators import validationClass
 from rest_framework import viewsets, status
 from Jobapp.models import Job, User, Company
 from Jobapp.serializers import JobSerializer, UserSerializer, CompanySerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
-# from django_filters.rest_framework import DjangoFilterBackend
+from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models.expressions import RawSQL
-from django.db import connection
-# from mysql.connector.errors import ProgrammingError
-
 
 # Create your views here.
-# this ModelViewSet provides basic crud methods like create, update etc.
+# the ModelViewSet provides basic crud methods like create, update etc.
+
 class JobViewSets(viewsets.ModelViewSet):
-    queryset = Job.objects.all()  # Get all the objects from Database
+    """
+    Job object viewsets
+    API: /api/v1/jobs
+    Database table name: tbl_job
+    Functions:
+        1. List jobs/specific job
+        3. check number of applicants
+        4. create or update job
+    """
+    queryset = Job.objects.all()
     serializer_class = JobSerializer
-    foreignKeys = ["company"]
 
     # Defining filters
     # DjangoFilterBackend allows to use filters in the URL as well (like /api/?company="xyz")
     # SearchFilter means the same except it'll operate on N number of fields but in the url
     # it'll be like (/api/company/?search="xyz")
-    # filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend]
     filterset_fields = ["company", "location"]
 
     def list(self, request):
-        """Overrided the default list action provided by
+        """
+        Overrided the default list action provided by
         the ModelViewSet, in order to contain a new field
-        called 'No of applicants' to the serializer data"""
+        called 'No of applicants' to the serializer data
+        """
 
         # check for the query_params (in case of filter)
-        filters = request.query_params
-        filtersDict = {}
-        if filters:
-            for filterName, filterValue in filters.items():
-                if filterName in self.filterset_fields:
-                    if filterValue:
-                        filtersDict[filterName] = filterValue
+        filters_dict = {}
+        if request.query_params:
+            filters = request.query_params
+            for filter_name, filter_value in filters.items():
+                if filter_name in self.filterset_fields and filter_value:
+                    filters_dict[filter_name] = filter_value
 
-        # Even if the filtersDict is empty, it returns
-        # overall data present in the Job
-        jobsData = self.queryset.filter(**filtersDict)
+        # Even if the filters_dict is empty, it returns
+        # overall data present in the Job, exception if wrong
+        # uuid value is given.
+        try:
+            jobs_data = self.queryset.filter(**filters_dict)
+        except django.core.exceptions.ValidationError as err:
+            return Response({"message": err.messages}, status=status.HTTP_404_NOT_FOUND)
+        else:
+            serialized_job_data = self.serializer_class(
+                jobs_data, many=True, context={"request": request}
+            )
 
-        serializedJobData = self.serializer_class(
-            jobsData, many=True, context={"request": request}
-        )
-        # get number of applicants
-        serializedJobData = self.getNumberOfApplicants(serializedJobData)
+            # get number of applicants
+            if serialized_job_data:
+                serialized_job_data = self.get_number_of_applicants(serialized_job_data)
 
-        return Response(serializedJobData.data, status=status.HTTP_200_OK)
+            return Response(serialized_job_data.data, status=status.HTTP_200_OK)
 
     def retrieve(self, request, pk=None):
+        """
+        retrieve the data of given job id
+        """
+
         validator = validationClass()
-        if not validator.isValidUUID(pk):
+        if not validator.is_valid_uuid(pk):
             return Response(
                 {"message": f"value {pk} isn't a correct id"},
                 status=status.HTTP_404_NOT_FOUND,
             )
 
         # filter based on pk
-        jobData = self.queryset.raw("SELECT * FROM tbl_job WHERE job_id=%s", [pk])
-        serializedJobData = self.serializer_class(jobData, many=True)
-        serializedJobData = self.getNumberOfApplicants(serializedJobData)
-        return Response(serializedJobData.data, status=status.HTTP_200_OK)
+        job_data = self.queryset.raw("SELECT * FROM tbl_job WHERE job_id=%s", [pk])
+        serialized_job_data = self.serializer_class(job_data, many=True)
+        serialized_job_data = self.get_number_of_applicants(serialized_job_data)
+        return Response(serialized_job_data.data, status=status.HTTP_200_OK)
     
-    def getNumberOfApplicants(self, serializedData):
-        if not serializedData:
+    def get_number_of_applicants(self, serialized_data):
+        """
+        return serialized_data with a new field added to it,
+        that contains count of number of applicants.
+        """
+
+        if not serialized_data:
             raise Exception("Serialized data not provided")
 
-        ## Add field to this data
-        # count number of applicants
-        for eachJobData in serializedData.data:
-            job_id = eachJobData.get("job_id")
+        for jobdata in serialized_data.data:
+            
+            job_id = jobdata.get("job_id")
             # numberOfApplications = User.objects.filter(job_id=job_id).count()
-            numberOfApplications = User.objects.filter(
+            number_of_applicants = User.objects.filter(
                 user_id__in=RawSQL(
                     """
                 SELECT user_id FROM tbl_user_profile
@@ -86,20 +105,21 @@ class JobViewSets(viewsets.ModelViewSet):
                     [job_id],
                 )
             ).count()
-            eachJobData.update({"Number of Applicants": numberOfApplications})
+            jobdata.update({"Number of Applicants": number_of_applicants})
 
-        return serializedData
+        return serialized_data
 
     @action(detail=True, methods=["get"])
     def users(self, request, pk=None):
-        """API Path: /api/v1/jobs/{pk}/users
+        """
+        API Path: /api/v1/jobs/{pk}/users
         to find out how many users have applied for
         this job using job_id.
         """
 
         # check if pk's value is a valid UUID
         validator = validationClass()
-        checkUUID = validator.isValidUUID(pk)
+        checkUUID = validator.is_valid_uuid(pk)
         if not checkUUID:
             return Response(
                 {"message": f"value {pk} isn't a correct id"},
@@ -107,51 +127,59 @@ class JobViewSets(viewsets.ModelViewSet):
                 content_type="application/json",
             )
 
-        # get the specific job
-        jobData = Job.objects.get(pk=pk)
-        job_id = jobData.job_id.hex
+        # get the specific job or return 404 if not found
+        jobdata = Job.objects.get(pk=pk)
+        job_id = jobdata.job_id.hex
 
         # get all the users object
-        userData = User.objects.filter(job_id=job_id)
-        serializedData = UserSerializer(
-            userData, many=True, context={"request": request}
+        user_data = User.objects.filter(job_id=job_id)
+        serialized_data = UserSerializer(
+            user_data, many=True, context={"request": request}
         )
-        return Response(serializedData.data)
+        return Response(serialized_data.data)
 
 
 class UserViewSets(viewsets.ModelViewSet):
+    """
+    User object viewsets
+    API: /api/v1/user
+    Database: tbl_user_profile
+    Functions:
+        1. create or update user
+        2. list users/specific user
+        3. check jobs applied by a specific user
+    """
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    foreignKeys = ["job", "company"]
 
-    def convertToHex(self, listData):
-        for i in range(len(listData)):
-            if isinstance(uuid.UUID(listData[i]), uuid.uuid4):
-                listData[i] = listData[i].hex
-
-    # Overriding the create method (used in POST request)
     def create(self, request, *args, **kwargs):
-        ## Perform validation for the resume and profile picture
-        # resume validation
-        validator = validationClass()
-        resumeData = request.FILES.get("resume")
-        if resumeData:
-            validationResult = validator.resumeValidation(resumeData)
-            if not validationResult[0]:
-                return Response(
-                    {"message": validationResult[1]},
-                    status=status.HTTP_406_NOT_ACCEPTABLE,
-                )
+        """
+        Overriding the create method (used in POST request),
+        This method creates a new user profile in the database.
+        """
 
-        # image validator
-        imageData = request.FILES.get("profilePicture")
-        if imageData:
-            validationResult = validator.ImageValidation(imageData)
-            if not validationResult[0]:
-                return Response(
-                    {"message": validationResult[1]},
-                    status=status.HTTP_406_NOT_ACCEPTABLE,
-                )
+        validator = validationClass()
+
+        if request.FILES:
+            # resume validation
+            resume_data = request.FILES.get("resume")
+            if resume_data:
+                validation_result = validator.resume_validation(resume_data)
+                if not validation_result[0]:
+                    return Response(
+                        {"message": validation_result[1]},
+                        status=status.HTTP_406_NOT_ACCEPTABLE,
+                    )
+
+            # image validation
+            image_data = request.FILES.get("profile_picture")
+            if image_data:
+                validation_result = validator.image_validation(image_data)
+                if not validation_result[0]:
+                    return Response(
+                        {"message": validation_result[1]},
+                        status=status.HTTP_406_NOT_ACCEPTABLE,
+                    )
 
         ## Save the data into the database
         # Update the fields
@@ -164,14 +192,18 @@ class UserViewSets(viewsets.ModelViewSet):
             serializer.data, status=status.HTTP_201_CREATED, headers=headers
         )
 
-    # Using this method we can find out which jobs a person has applied so far
+
     @action(detail=True, methods=["get"])
-    def jobs(
-        self, request, pk=None
-    ):  # pk here means primary key (basically the user_id)
-        # here we get the data
+    def jobs(self, request, pk=None): 
+        """
+        API: /api/v1/user/{pk}/jobs
+        This method finds out how many jobs a person has applied so far,
+        pk here means primary key (basically the user_id)
+        """
+
         try:
-            personData = self.queryset.filter(
+            jobs_data = None
+            person_data = self.queryset.filter(
                 user_id__in=RawSQL(
                     """
                 SELECT user_id FROM tbl_user_profile
@@ -180,23 +212,25 @@ class UserViewSets(viewsets.ModelViewSet):
                     [pk],
                 )
             )
-            jobId = personData.get().job_id.hex
-            # jobsData=Job.objects.filter(job_id=jobId)
-            jobsData = Job.objects.filter(
-                job_id__in=RawSQL(
-                    """
-                SELECT job_id FROM tbl_job
-                WHERE job_id=%s
-                """,
-                    [jobId],
+
+            if person_data.exists():
+                job_id = person_data.get().job_id.hex
+                # jobs_data=Job.objects.filter(job_id=job_id)
+                jobs_data = Job.objects.filter(
+                    job_id__in=RawSQL(
+                        """
+                    SELECT job_id FROM tbl_job
+                    WHERE job_id=%s
+                    """,
+                        [job_id],
+                    )
                 )
-            )
 
             # here we serialize the data, for comm.
-            serializedJobsData = JobSerializer(
-                jobsData, many=True, context={"request": request}
+            serialized_jobs_data = JobSerializer(
+                jobs_data, many=True, context={"request": request}
             )
-            return Response(serializedJobsData.data)
+            return Response(serialized_jobs_data.data)    
         except django.core.exceptions.ObjectDoesNotExist:
             return Response(
                 {"message": f"person id '{pk}' doesn't exist"},
@@ -205,23 +239,37 @@ class UserViewSets(viewsets.ModelViewSet):
 
 
 class CompanyViewSets(viewsets.ModelViewSet):
-    queryset = Company.objects.all()  # get all the data of company from db
+    """
+    Company object viewsets
+    API: /api/v/company
+    Database: tbl_company
+    Functions:
+        1. create or update functions
+        2. get jobs available in a company
+        3. get user available in a company
+        4. list companies/specific company
+    """
+    queryset = Company.objects.all()
     serializer_class = CompanySerializer
 
     # Basic filters
-    # filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend]
     filterset_fields = ["name", "location"]
 
     @action(detail=False, methods=["get"])
     def jobs(self, request):
-        serializedCompanyData = self.serializer_class(self.get_queryset(), many=True)
-        for eachData in serializedCompanyData.data:
-            companyId = eachData.get("company_id")
+        """
+        Method to get a list of jobs
+        """
+
+        serialized_company_data = self.serializer_class(self.get_queryset(), many=True)
+        for company_data in serialized_company_data.data:
+            companyId = company_data.get("company_id")
 
             # get jobs data by company_id from database
             # .values() returns the QuerySet
             # jobData = Job.objects.filter(company=companyId).values()
-            jobData = Job.objects.filter(
+            job_data = Job.objects.filter(
                 job_id__in=RawSQL(
                     """
                 SELECT job_id from tbl_job
@@ -230,18 +278,22 @@ class CompanyViewSets(viewsets.ModelViewSet):
                     [companyId],
                 )
             ).values()
-            eachData.update({"Jobs": jobData})
+            company_data.update({"Jobs": job_data})
 
-        return Response(serializedCompanyData.data, status=status.HTTP_200_OK)
+        return Response(serialized_company_data.data, status=status.HTTP_200_OK)
 
     @action(detail=False, methods=["get"])
     def users(self, request):
-        serializedCompanyData = self.serializer_class(self.get_queryset(), many=True)
-        for eachData in serializedCompanyData.data:
-            company_id = eachData.get("company_id")
+        """
+        Method to get the list of users
+        """
+
+        serialized_company_data = self.serializer_class(self.get_queryset(), many=True)
+        for company_data in serialized_company_data.data:
+            company_id = company_data.get("company_id")
 
             # Get user information by company_id from database
-            userData = User.objects.filter(
+            user_data = User.objects.filter(
                 user_id__in=RawSQL(
                     """
                 SELECT user_id from tbl_user_profile
@@ -250,6 +302,6 @@ class CompanyViewSets(viewsets.ModelViewSet):
                     [company_id],
                 )
             ).values()
-            eachData.update({"User": userData})
+            company_data.update({"User": user_data})
 
-        return Response(serializedCompanyData.data, status=status.HTTP_200_OK)
+        return Response(serialized_company_data.data, status=status.HTTP_200_OK)
