@@ -2,12 +2,62 @@
 
 ***Activate your virtual environment first***
 
-### Migrations
-Once the repo. is downloaded, run the following commands to create the tables of the models in your local database    
+### Pre-requisite
+
+#### Database set-up
+We assume that you might be using the [MySQL](https://www.mysql.com/) in your local environment, if not, then you've to install it first before moving forward.    
+once it's downloaded, run the MySQL service (the default port is 3306).    
+    
+In linux, to run the MySQL service,     
+run the following command: `sudo systemctl start mysql` or check the command for your distro/O.S.    
+
+After this, make necessary editions to the project's [settings.py](djangoauthapi1/settings.py)    
+Add your mysql username and password here:    
+```py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'NullJobNEW',
+        'USER': 'root', # your mysql username
+        'PASSWORD': 'root', # your mysql password
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+```
+**NOTE**: Remember, the database which is mentioned as the value of key called "NAME" need to be exist (In this case it's NullJobNEW).    
+You've two choices here, either to create this database manually or by using the python script.    
+
+1. To create the database manually using MySQL interface    
+Command: `CREATE DATABASE databasename`     
+
+2. To create the database using the [python script](python_mysql_connector/py_mysql.py)
+For example:     
+```python
+┌──[hi-man@blackHat ~/NullJobs/testing-file-upload/null-auth-authentication]
+└──$ >> python -i python_mysql_connector/py_mysql.py 
+>>> 
+>>> dbconnection = MySQL(database="NullJob")
+Wrong database information provided! Database=NullJob
+Do you want to create a new database named NullJob [Y/N]: y
+Database has been created!
+>>> 
+>>>
+```
+
+#### Install modules
+Install all the required modules mentioned in the requirements.txt    
+Command: `python -m pip install -r requirements.txt`
+
+    
+#### Migration Commands
+Once the database is set-up and you have downloaded the repo, run the following commands to create the tables of the models in your local database    
 `python manage.py makemigrations` (Create migration files for the models)   
 `python manage.py migrate` (Apply the created migration files in the db)
+
      
-### Initial Data for the defined models
+#### Initial Data for the defined models
+
 Location: `seedFiles/`    
 This directory contains the initial data for the defined models in Jobapp/models.py
 
