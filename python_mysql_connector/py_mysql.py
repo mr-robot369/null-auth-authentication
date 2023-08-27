@@ -32,7 +32,7 @@ class MySQL:
                 raise Exception("Something went Wrong! Access denied")
             elif error.errno == errorcode.ER_BAD_DB_ERROR:
                 print(f"Wrong database information provided! Database={self.database}")
-            choice = input("Do you want to created a new database named {} [Y/N]".format(self.database))
+            choice = input("Do you want to create a new database named {} [Y/N]: ".format(self.database))
             if choice.lower() == 'y':
                 self._create_database()
             else:
