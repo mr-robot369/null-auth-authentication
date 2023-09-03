@@ -1,0 +1,26 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-yaml
+      - id: check-json
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: mixed-line-ending
+      - id: detect-aws-credentials
+      - id: check-byte-order-marker
+      - id: name-tests-test
+      - id: debug-statements
+      - id: requirements-txt-fixer
+
+  - repo: https://github.com/pre-commit/mirrors-isort
+    rev: v5.9.3  # Use the latest isort version or specify a specific version
+    hooks:
+      - id: isort
+
+  - repo: https://github.com/psf/black
+    rev: 23.7.0
+    hooks:
+      - id: black
